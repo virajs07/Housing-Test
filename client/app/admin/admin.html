@@ -1,0 +1,28 @@
+<main ng-keydown="keypressed($event)">
+  <nav class="left-bar">
+    <div class="users-list">
+      <ul class="users">
+        <li class="userView" ng-repeat="user in users">
+          <div ng-click="setUserName(user)">
+            <a href="#" ng-class="{'blink':messageFor==user}">{{user}}</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="chat page">
+      <div class="chatArea">
+        <ul class="messages">
+          <li class="log" ng-repeat="message in messages">
+            <div class="message"> 
+              <a href ="#" class="label" ng-bind="message.person"></a>
+              <span class="text">▸</span>
+              {{message.text}}
+            </div>
+          </li>
+        </ul>
+        <input class="inputMessage" placeholder = "Type here..." ng-model="adminMessage">
+      </div>
+  </div>
+<main>

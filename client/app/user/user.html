@@ -1,0 +1,23 @@
+<main ng-keydown="keypressed($event)">
+  <div class="login page" ng-show="showLogin">
+    <div class="form">
+      <h3 class="title">What's your nickname?</h3>
+      <input class="usernameInput" type="text" maxlength="30" ng-model="username">
+    </div>
+  </div>
+  <div class="chat page" ng-hide="showLogin">
+    <div class="chatArea">
+      <ul class="messages">
+        <li class="log" ng-repeat="message in messages">
+          <div class="message"> 
+            <a href ="#" class="label" ng-bind="message.person"></a>
+            <span class="text">▸</span>
+            {{message.text}}
+          </div>
+        </li>
+      </ul>
+      <input class="inputMessage" placeholder = "Type here..." ng-model="userMessage">
+    </div>
+  </div>
+</main>
+

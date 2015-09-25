@@ -1,0 +1,41 @@
+.login.page{
+    background-color: black;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+.inputMessage {
+    border: 10px solid #000;
+    bottom: 0;
+    height: 60px;
+    left: 0;
+    outline: none;
+    padding-left: 10px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    font-size: 100%; 
+}
+
+.login.page .title,.login.page .usernameInput{
+    color: #fff;
+    font-weight: 100;
+}
+
+.login.page .title {
+    font-size: 200%;
+}
+
+.login.page .form .usernameInput {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+    text-align: left;
+    width: 400px;
+}
+
+.login.page .usernameInput {
+    font-size: 200%;
+    letter-spacing: 3px;
+}
