@@ -24,7 +24,7 @@ if(config.seedDB) { require('./config/seed'); }
 
 var sockets = {}; // this is used to keep a track of the sockets connected to from server
 var user = {}; // this is used to keep usernames
-var admin = "admin";
+var admin = "admin"; // this is the admin variable can be any other user as well
 
 // Setup server
 var app = express();
@@ -38,7 +38,7 @@ require('./config/express')(app);
 require('./routes')(app);
 
 // Start server
-server.listen(9000,function () {
+server.listen(config.port,function () {
   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
 });
 
@@ -77,13 +77,10 @@ socketio.on('connection',function(socket){
 		var messageJSON = JSON.stringify({person:socket.username,text:message});
 		var userMessage = new Message({username:socket.username,message:messageJSON});
 		userMessage.save();
-		console.log("User's message has been saved in db");
 		if(user[admin]){
 			var adminSocket = sockets[user[admin]];
 			adminSocket.emit('user_message',JSON.parse(messageJSON));
-			console.log("Send to admin socket");
 		}
-		console.log("end")
 	});
 
 	/**
@@ -108,7 +105,6 @@ socketio.on('connection',function(socket){
 		if(user[admin]){
 			var adminSocket = sockets[user[admin]];
 			adminSocket.emit('users',Object.keys(user));
-			console.log("Send to admin socket");
 		}
 	});
 
@@ -118,7 +114,6 @@ socketio.on('connection',function(socket){
 	socket.on('add_admin',function(message){
 		user[admin] = socket.id;
 		sockets[socket.id] = socket;
-		console.log("Admin logged in");
 	});
 
 	/**
@@ -153,9 +148,7 @@ socketio.on('connection',function(socket){
 		if(user[admin]){
 			var adminSocket = sockets[user[admin]];
 			adminSocket.emit('user_disconnected',socket.username);
-			console.log("Send to admin socket");
 		}
-		console.log("Socket disconnected");
 	});
 });
 

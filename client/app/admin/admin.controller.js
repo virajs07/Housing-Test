@@ -31,6 +31,9 @@ angular.module('housingApp')
 		 */
 		$scope.setUserName = function(name){
 			$scope.currentUser = name;
+			if($scope.messageFor==name){
+				$scope.messageFor = "";
+			}
 			$scope.socket.emit('get_user',name);			
 		}
 
@@ -46,7 +49,7 @@ angular.module('housingApp')
 			}
 			else{
 				$scope.messageFor = message.person;
-				$timeout(function() {$scope.messageFor = ""}, 5000);
+				//$timeout(function() {$scope.messageFor = ""}, 5000);
 			}
 		});
 		/**
